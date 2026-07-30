@@ -10,6 +10,7 @@
     <head>
         <meta charset="utf-8">
         <title>ALEV4SIM</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="Description">
@@ -17,7 +18,14 @@
             <br>
             <div style="border-style: solid; border-color: black; border-width: 3px;">
                 <p>
-                    This project aims to simulate the ALEV4 sensor found in ARRI digital cameras in Unreal Engine.
+                    This project simulates the ALEV4 sensor found in ARRI digital cinema cameras inside Unreal Engine. The simulation 
+                    reproduces the sensor's Dual Gain Architecture (DGA): rather than a single readout, it derives two gain paths — a 
+                    high-gain and a low-gain read of the same exposure — and merges them with a luminance mask. The low-gain path 
+                    preserves highlight detail by clipping later, while the high-gain path provides cleaner shadows; the mask determines 
+                    which path's output each pixel inherits, extending the captured dynamic range. The merged image is then transformed 
+                    into the ARRI Wide Gamut 4 (AWG4) colour space and encoded with the ARRI LogC4 transfer function, so footage integrates 
+                    directly into standard ARRI LogC4 grading workflows alongside real ARRI material. The simulation is a drop-in plugin 
+                    that runs in real time as part of the post-processing chain.
                 </p>
 
             </div>
