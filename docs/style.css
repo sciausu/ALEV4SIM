@@ -1,4 +1,247 @@
-#description
-{
-    margin-inline: auto;
+/* ============================================================
+   ALEV4SIM — project page
+   ============================================================ */
+
+:root {
+    --bg:          #14161a;
+    --panel:       #1c1f25;
+    --border:      #2e333c;
+    --text:        #e6e8ec;
+    --text-muted:  #9aa2ae;
+    --accent:      #d8a13a;
+    --max-width:   980px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+/* ---------------------------- Layout ---------------------------- */
+
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px 64px;
+}
+
+section { margin-bottom: 56px; }
+
+/* ---------------------------- Header ---------------------------- */
+
+.site-header {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 56px 24px 40px;
+    border-bottom: 1px solid var(--border);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 2.6rem;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+
+.tagline {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* ---------------------------- Typography ---------------------------- */
+
+h2 {
+    font-size: 1.45rem;
+    font-weight: 600;
+    margin: 48px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 24px;
+}
+
+.panel p { margin: 18px 0; }
+
+.caption-note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: -4px;
+}
+
+.todo {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+a { color: var(--accent); }
+
+/* ============================================================
+   Before/after wipe slider
+   ============================================================ */
+
+.compare-figure { margin: 28px 0 40px; }
+
+.compare {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #000;
+    touch-action: none;          /* let pointer drag win over scroll */
+    cursor: ew-resize;
+    user-select: none;
+    line-height: 0;
+}
+
+.compare-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
+/* The overlay sits exactly on top of the base image and is clipped. */
+.compare-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: inset(0 50% 0 0);
+}
+
+/* Vertical divider + grab handle */
+.compare-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+}
+
+.compare-grip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.compare-grip::before,
+.compare-grip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.compare-grip::before { left: 9px;  border-right: 7px solid #14161a; }
+.compare-grip::after  { right: 9px; border-left:  7px solid #14161a; }
+
+/* Corner labels */
+.compare-label {
+    position: absolute;
+    top: 12px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.62);
+    border-radius: 3px;
+    pointer-events: none;
+    transition: opacity 0.12s linear;
+}
+
+.compare-label-a { left: 12px; }
+.compare-label-b { right: 12px; }
+
+/* Invisible range input laid over the whole image.
+   Gives keyboard access and screen-reader semantics for free. */
+.compare-range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+}
+
+.compare:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+figcaption {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+}
+
+figcaption strong { color: var(--text); }
+
+/* ---------------------------- Footer ---------------------------- */
+
+.site-footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 28px 24px 64px;
+    border-top: 1px solid var(--border);
+}
+
+.disclosure {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0 0 12px;
+}
+
+.repo-link {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ---------------------------- Small screens ---------------------------- */
+
+@media (max-width: 620px) {
+    body { font-size: 16px; }
+    .site-header { padding: 36px 18px 28px; }
+    .site-header h1 { font-size: 2rem; }
+    main { padding: 0 18px 48px; }
+    .panel { padding: 4px 16px; }
+    .compare-grip { width: 34px; height: 34px; margin: -17px 0 0 -17px; }
 }

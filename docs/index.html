@@ -2,57 +2,232 @@
 <!--
     Format:
     - Description
-    - comparison
-    - benefits
-    - challenges/issues
+    - Comparison
+    - Benefits
+    - Challenges / issues
 -->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>ALEV4SIM</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="Description">
-            <h2> Description: </h2>
-            <br>
-            <div style="border-style: solid; border-color: black; border-width: 3px; padding-left: 1%; padding-right: 1%; width: 65%; position: relative;">
-                <p>
-                    This project simulates the ALEV4 sensor found in ARRI digital cinema cameras inside Unreal Engine. The simulation 
-                    reproduces the sensor's Dual Gain Architecture (DGA): rather than a single readout, it derives two gain paths — a 
-                    high-gain and a low-gain read of the same exposure — and merges them with a luminance mask. The low-gain path 
-                    preserves highlight detail by clipping later, while the high-gain path provides cleaner shadows; the mask determines 
-                    which path's output each pixel inherits, extending the captured dynamic range. The merged image is then transformed 
-                    into the ARRI Wide Gamut 4 (AWG4) colour space and encoded with the ARRI LogC4 transfer function, so footage integrates 
-                    directly into standard ARRI LogC4 grading workflows alongside real ARRI material. The simulation is a drop-in plugin 
-                    that runs in real time as part of the post-processing chain.
-                </p>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ALEV4SIM — ARRI ALEV4 Sensor Simulation for Unreal Engine</title>
+    <meta name="description" content="A real-time Unreal Engine plugin simulating the ARRI ALEV4 sensor's Dual Gain Architecture, AWG4 colour space, and LogC4 encoding.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header class="site-header">
+    <h1>ALEV4SIM</h1>
+    <p class="tagline">A real-time simulation of the ARRI ALEV4 sensor for Unreal Engine</p>
+</header>
+
+<main>
+
+    <!-- ============================= DESCRIPTION ============================= -->
+    <section id="description">
+        <h2>Description</h2>
+        <div class="panel">
+            <p>
+                This project simulates the ALEV4 sensor found in ARRI digital cinema cameras inside Unreal Engine.
+                The simulation reproduces the sensor's Dual Gain Architecture (DGA): rather than a single readout,
+                it derives two gain paths &mdash; a high-gain and a low-gain read of the same exposure &mdash; and
+                merges them with a luminance mask. The low-gain path preserves highlight detail by clipping later,
+                while the high-gain path provides cleaner shadows; the mask determines which path's output each
+                pixel inherits, extending the captured dynamic range. The merged image is then transformed into the
+                ARRI Wide Gamut 4 (AWG4) colour space and encoded with the ARRI LogC4 transfer function, so footage
+                integrates directly into standard ARRI LogC4 grading workflows alongside real ARRI material. The
+                simulation is a drop-in plugin that runs in real time as part of the post-processing chain.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================= COMPARISON ============================= -->
+    <section id="comparison">
+        <h2>Results</h2>
+        <p class="caption-note">
+            Images captured from the &ldquo;Electric Dreams Environment&rdquo; world from the Fab marketplace.
+            Both renders use an identical camera position, focal length and exposure.
+        </p>
+
+        <!-- ---- Comparison 1: ungraded, straight from the renderer ---- -->
+        <figure class="compare-figure">
+            <div class="compare" data-label-a="Plugin OFF" data-label-b="Plugin ON">
+                <img class="compare-img compare-base" src="images/src_on_asis.png"
+                     alt="Plugin output straight from the renderer, entirely above display white before grading.">
+                <img class="compare-img compare-overlay" src="images/src_off_asis.png"
+                     alt="Render without the simulation, shown through a standard display transform.">
             </div>
+            <figcaption>
+                <strong>Ungraded, over-exposed scene straight from the renderer.</strong>
+                Shown with no adjustment whatsoever in resolve, the <em>plugin ON</em> side is above display white, hence 
+                over exposed so when viewing it, it looks pure white. The image data is
+                falls outside the display range of standard non HDR monitors until it is brought into a grading
+                pipeline, which is what the graded comparison below shows.
+            </figcaption>
+        </figure>
 
-        </div> <!-- end of description div-->
+        <!-- ---- Comparison 2: graded ---- -->
+        <figure class="compare-figure">
+            <div class="compare" data-label-a="Plugin OFF" data-label-b="Plugin ON">
+                <img class="compare-img compare-base" src="images/compare_after_on.png"
+                     alt="Overexposed scene rendered with the ALEV4 simulation enabled, retaining highlight detail.">
+                <img class="compare-img compare-overlay" src="images/compare_after_off.png"
+                     alt="The same overexposed scene rendered without the ALEV4 simulation.">
+            </div>
+            <figcaption>
+                <strong>Over-exposed scene, plugin off vs. plugin on &mdash; graded in DaVinci Resolve.</strong>
+                Drag the handle to wipe between the two renders. Both frames share the same camera position and
+                exposure and both received a grade; only the sensor simulation differs. With the simulation
+                enabled, specular detail on the foreground leaf and the lit rock face is held rather than
+                flattening to a single value.
+            </figcaption>
+        </figure>
+    </section>
 
-        <div id="comparison">
-            <p> Images captured from the "Electric Dreams Environment" world from the Fab marketplace</p>
-            <div> <!-- images go here-->
-                <img src="../images/plugin_off_overExp_before.png">
-                <img src="../images/plugin_on_overExp_before.png">
-                <img src="../images/plugin_off_overExp_after.png">
-                <img src="../images/plugin_on_overExp_after.png">
+    <!-- ============================= BENEFITS ============================= -->
+    <section id="benefits">
+        <h2>Benefits</h2>
+        <div class="panel">
+            <p class="todo">To be written.</p>
+        </div>
+    </section>
 
-            </div> <!-- end of images div-->
-            <div> <!-- paragraph to compare the results goes here-->
+    <!-- ============================= ISSUES ============================= -->
+    <section id="issues">
+        <h2>Challenges &amp; Issues Encountered</h2>
+        <div class="panel">
+            <p class="todo">To be written.</p>
+        </div>
+    </section>
 
-            </div> <!-- end of explanation div-->
+</main>
 
-        </div> <!-- end of comparison div-->
+<footer class="site-footer">
+    <p class="disclosure">
+        Designed and directed by Stefan Ciausu. Sensor architecture, colour-science research, debugging, and
+        validation by me; shader and plugin implementation developed with AI assistance (Claude). This website
+        was also built with AI assistance.
+    </p>
+    <p class="repo-link">
+        Source code and full project files:
+        <a href="https://github.com/sciausu/ALEV4SIM">github.com/sciausu/ALEV4SIM</a>
+    </p>
+</footer>
 
-        <div> <!-- issues encountered-->
+<script>
+/* ------------------------------------------------------------------
+   Before/after wipe slider.
+   Initialises every .compare element on the page. Each one needs a
+   .compare-base image and a .compare-overlay image of identical
+   dimensions; the overlay is clipped horizontally by the handle.
+   ------------------------------------------------------------------ */
+(function () {
+    'use strict';
 
-        </div> <!-- end of isssues encountered-->
-        
+    function initCompare(root) {
+        var overlay = root.querySelector('.compare-overlay');
+        var base    = root.querySelector('.compare-base');
+        if (!overlay || !base) return;
 
-    </body>
+        var handle = document.createElement('div');
+        handle.className = 'compare-handle';
+        handle.innerHTML = '<span class="compare-grip" aria-hidden="true"></span>';
 
+        var range = document.createElement('input');
+        range.type = 'range';
+        range.min = 0;
+        range.max = 100;
+        range.value = 50;
+        range.step = 0.1;
+        range.className = 'compare-range';
+        range.setAttribute('aria-label',
+            'Wipe between ' + (root.dataset.labelA || 'A') + ' and ' + (root.dataset.labelB || 'B'));
+
+        var labelA = document.createElement('span');
+        labelA.className = 'compare-label compare-label-a';
+        labelA.textContent = root.dataset.labelA || 'A';
+
+        var labelB = document.createElement('span');
+        labelB.className = 'compare-label compare-label-b';
+        labelB.textContent = root.dataset.labelB || 'B';
+
+        root.appendChild(handle);
+        root.appendChild(labelA);
+        root.appendChild(labelB);
+        root.appendChild(range);
+
+        // Width of the fade zone at each end, as a percentage of the image.
+        var LABEL_FADE = 8;
+
+        function setPosition(pct) {
+            pct = Math.max(0, Math.min(100, pct));
+            overlay.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+            handle.style.left = pct + '%';
+
+            // Once a side is fully wiped away its label no longer describes
+            // anything on screen, so fade it out rather than leave it sitting
+            // over the other image.
+            labelA.style.opacity = Math.max(0, Math.min(1, pct / LABEL_FADE));
+            labelB.style.opacity = Math.max(0, Math.min(1, (100 - pct) / LABEL_FADE));
+        }
+
+        range.addEventListener('input', function () { setPosition(parseFloat(range.value)); });
+
+        function pointerToPct(clientX) {
+            var r = root.getBoundingClientRect();
+            return ((clientX - r.left) / r.width) * 100;
+        }
+
+        var dragging = false;
+
+        root.addEventListener('pointerdown', function (e) {
+            dragging = true;
+            root.setPointerCapture(e.pointerId);
+            var pct = pointerToPct(e.clientX);
+            range.value = pct;
+            setPosition(pct);
+        });
+
+        root.addEventListener('pointermove', function (e) {
+            if (!dragging) return;
+            var pct = pointerToPct(e.clientX);
+            range.value = pct;
+            setPosition(pct);
+        });
+
+        function endDrag(e) {
+            if (!dragging) return;
+            dragging = false;
+            if (e.pointerId !== undefined && root.hasPointerCapture(e.pointerId)) {
+                root.releasePointerCapture(e.pointerId);
+            }
+        }
+        root.addEventListener('pointerup', endDrag);
+        root.addEventListener('pointercancel', endDrag);
+
+        function lockRatio() {
+            if (base.naturalWidth && base.naturalHeight) {
+                root.style.aspectRatio = base.naturalWidth + ' / ' + base.naturalHeight;
+            }
+        }
+        if (base.complete) lockRatio(); else base.addEventListener('load', lockRatio);
+
+        setPosition(50);
+        root.classList.add('is-ready');
+    }
+
+    function initAll() {
+        var nodes = document.querySelectorAll('.compare');
+        for (var i = 0; i < nodes.length; i++) initCompare(nodes[i]);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
+})();
+</script>
+
+</body>
 </html>
-
