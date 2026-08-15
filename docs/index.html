@@ -82,13 +82,56 @@
                 flattening to a single value.
             </figcaption>
         </figure>
+
+        <!-- ---- Comparison 3: foliage detail, graded ---- -->
+        <figure class="compare-figure">
+            <div class="compare" data-label-a="Plugin OFF" data-label-b="Plugin ON">
+                <img class="compare-img compare-base" src="images/p_on_foliage.png"
+                     alt="Foliage and rock face rendered with the ALEV4 simulation enabled, graded in DaVinci Resolve.">
+                <img class="compare-img compare-overlay" src="images/p_off_foliage.png"
+                     alt="The same foliage and rock face rendered without the ALEV4 simulation.">
+            </div>
+            <figcaption>
+                <strong>Foliage and rock face, plugin off vs. plugin on &mdash; both graded in DaVinci Resolve.</strong>
+                Drag the handle to wipe between the two renders. Because both frames received a grade, their
+                overall exposure matches closely and neither clips; the difference is in how the tonal range is
+                distributed. The simulated sensor places its midtones lower while carrying the sunlit rock and
+                leaf highlights higher, so the separation between shade and direct sun is wider rather than
+                compressed toward a single mid value.
+            </figcaption>
+        </figure>
+
+        <!-- ---- Comparison 4: colour chart ---- -->
+        <figure class="compare-figure">
+            <div class="compare" data-label-a="Plugin OFF" data-label-b="Plugin ON">
+                <img class="compare-img compare-base" src="images/p_on_chart.png"
+                     alt="A colour chart rendered through the ALEV4 simulation, showing the desaturated log encoding and lifted shadow patches.">
+                <img class="compare-img compare-overlay" src="images/p_off_chart.png"
+                     alt="The same colour chart rendered without the ALEV4 simulation.">
+            </div>
+            <figcaption>
+                <strong>Colour chart, plugin off vs. plugin on &mdash; ungraded.</strong>
+                Drag the handle to wipe between the two renders. A reference chart isolates the colour and
+                transfer-function behaviour from scene content. With the simulation enabled the patches sit
+                roughly 30% less saturated: the colours are being carried in the wider AWG4 container and
+                encoded to LogC4, so they occupy less of the display range before a grade is applied, which is
+                the expected appearance of log material rather than a loss of colour. The grey ramp along the
+                bottom shows the matching tonal redistribution &mdash; the darker patches lift by up to 25 code
+                values while the brightest patch comes down slightly, spending precision on the shadows and
+                holding highlight headroom back for the grade.
+            </figcaption>
+        </figure>
     </section>
 
     <!-- ============================= BENEFITS ============================= -->
     <section id="benefits">
         <h2>Benefits</h2>
         <div class="panel">
-            <p class="todo">To be written.</p>
+            <p class="todo">The core benefit is pipeline compatibility: footage rendered through the plugin behaves like 
+			ARRI camera footage in post-production. CG shots can be graded alongside real ALEXA material using the same LogC4 
+			transforms and LUTs, colour-matched without hand-tuning, and pushed around in the grade with log latitude — 
+			overexposed highlights that a default render would clip remain recoverable. For virtual production and VFX work 
+			that mixes Unreal renders with ARRI capture, the plugin removes the colourist's matching step.</p>
         </div>
     </section>
 
@@ -96,7 +139,12 @@
     <section id="issues">
         <h2>Challenges &amp; Issues Encountered</h2>
         <div class="panel">
-            <p class="todo">To be written.</p>
+            <p class="todo">One issue that surfaced during testing is that the plugin has a defined operating envelope: 
+			it expects manual exposure and a scene exposed with the subject near middle grey, just as a physical camera 
+			does. Pre-built sample worlds often ship with auto-exposure volumes, exposure overrides, and heavy volumetric 
+			atmospherics that modify the light before it reaches the sensor simulation, producing washed-out or mismatched 
+			results. The remedy is to disable those overrides and expose the scene deliberately — the same discipline a 
+			cinematographer applies on set.</p>
         </div>
     </section>
 
@@ -109,8 +157,8 @@
         was also built with AI assistance.
     </p>
     <p class="repo-link">
-        Source code and full project files:
-        <a href="https://github.com/sciausu/ALEV4SIM">github.com/sciausu/ALEV4SIM</a>
+        Source code and full project files [link not open yet]:
+        <a href="https://github.com/sciausu/EECS4080">github.com/sciausu/EECS4080</a>
     </p>
 </footer>
 
